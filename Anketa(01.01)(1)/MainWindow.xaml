@@ -16,58 +16,67 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
-            <TextBlock Text="Заголовок"/>
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="/Image/9AyS-GZ-btg.jpg" Grid.Row="1"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="/Image/_QwWyzESe9I.jpg" Grid.Row="1"/>
         </StackPanel>
         <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <GroupBox Width="170pt" Height="320pt" Header="Введите данные о себе" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0 0 20">
-                <StackPanel Orientation="Vertical">
-                    <GroupBox Header="Введите имя" Margin="10 10 10 5" Height="50pt">
-                        <TextBox x:Name="nameTextBox" Height="20pt"></TextBox>
-                    </GroupBox>
-                    <GroupBox Header="Введите дату рождения" Margin="10 5 10 10" Height="40pt">
-                        <DatePicker x:Name="dateBirth" Height="20pt"></DatePicker>
-                    </GroupBox>
-                    <GroupBox Header="Выберете пол" Margin="10 10 10 10" Height="70pt">
-                        <ListBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="137pt" x:Name="lbGender">
-                            <ListBoxItem  Height="15pt">Мальчик</ListBoxItem>
-                            <ListBoxItem  Height="15pt">Девочка</ListBoxItem>
-                            <ListBoxItem  Height="15pt">Трансформер</ListBoxItem>
-                        </ListBox>
-                    </GroupBox>
-                    <GroupBox Header="Доп. инфо" Margin="10 10 70 10" Height="86">
-                        <StackPanel Orientation="Vertical">
-                            <CheckBox x:Name="good" Height="15pt">Добрый</CheckBox>
-                            <CheckBox x:Name="zloi" Height="15pt">Злой</CheckBox>
-                            <CheckBox x:Name="psih" Height="15pt">Нужен психолог</CheckBox>
-                        </StackPanel>
-                    </GroupBox>
-                    <Button Content="Записать" Margin="55 5 55 10" Click="Button_Click"/>
-                </StackPanel>
-            </GroupBox>
-
-            <GroupBox Width="170pt" Height="280pt" Header="Считывание информации" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0 0 20">
-                <StackPanel Orientation="Vertical">
-                    <GroupBox Header="Имя" Margin="10 10 10 5" Height="30pt">
-                        <TextBlock x:Name="n" Height="20pt"></TextBlock>
-                    </GroupBox>
-                    <GroupBox Header="Дата рождения" Margin="10 10 10 5" Height="30pt">
-                        <TextBlock x:Name="Na" Height="20pt"></TextBlock>
-                    </GroupBox>
-                    <GroupBox Header="Пол" Margin="10 10 10 5" Height="30pt">
-                        <TextBlock x:Name="Nav" Height="20pt"></TextBlock>
-                    </GroupBox>
-                    <GroupBox Header="Дополнительная информация" Margin="10 10 10 5" Height="30pt">
-                        <TextBlock x:Name="Navi" Height="20pt"></TextBlock>
-                    </GroupBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="Прочитать" Height="15pt" Margin="10 10 10 5" Click="Button_Click_1"/>
-                        <Button Content="Вывести следующую" Height="15pt" Margin="10 10 10 5" Click="Button_Click_2"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFDFAFD" Offset="0.146"/>
+                        <GradientStop Color="#FFCE3D7C" Offset="0.607"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <GroupBox Width="170pt" Height="320pt" Header="Введите данные о себе" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0 0 20" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}">
+                    <StackPanel Orientation="Vertical">
+                        <GroupBox Header="Введите имя" Margin="10 10 10 5" Height="50pt">
+                            <TextBox x:Name="nameTextBox" Height="20pt"></TextBox>
+                        </GroupBox>
+                        <GroupBox Header="Введите дату рождения" Margin="10 5 10 10" Height="40pt">
+                            <DatePicker x:Name="dateBirth" Height="20pt"></DatePicker>
+                        </GroupBox>
+                        <GroupBox Header="Выберете пол" Margin="10 10 10 10" Height="70pt">
+                            <ListBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="137pt" x:Name="lbGender">
+                                <ListBoxItem  Height="15pt">Мальчик</ListBoxItem>
+                                <ListBoxItem  Height="15pt">Девочка</ListBoxItem>
+                                <ListBoxItem  Height="15pt">Трансформер</ListBoxItem>
+                            </ListBox>
+                        </GroupBox>
+                        <GroupBox Header="Доп. инфо" Margin="10 10 70 10" Height="86">
+                            <StackPanel Orientation="Vertical">
+                                <CheckBox x:Name="good" Height="15pt">Добрый</CheckBox>
+                                <CheckBox x:Name="zloi" Height="15pt">Злой</CheckBox>
+                                <CheckBox x:Name="psih" Height="15pt">Нужен психолог</CheckBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <Button Content="Записать" Margin="55 5 55 10" Click="Button_Click"/>
                     </StackPanel>
-                </StackPanel>
-            </GroupBox>
-        </StackPanel>
+                </GroupBox>
+
+                <GroupBox Width="170pt" Height="280pt" Header="Считывание информации" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0 0 20">
+                    <StackPanel Orientation="Vertical">
+                        <GroupBox Header="Имя" Margin="10 10 10 5" Height="30pt">
+                            <TextBlock x:Name="n" Height="20pt"></TextBlock>
+                        </GroupBox>
+                        <GroupBox Header="Дата рождения" Margin="10 10 10 5" Height="30pt">
+                            <TextBlock x:Name="Na" Height="20pt"></TextBlock>
+                        </GroupBox>
+                        <GroupBox Header="Пол" Margin="10 10 10 5" Height="30pt">
+                            <TextBlock x:Name="Nav" Height="20pt"></TextBlock>
+                        </GroupBox>
+                        <GroupBox Header="Дополнительная информация" Margin="10 10 10 5" Height="30pt">
+                            <TextBlock x:Name="Navi" Height="20pt"></TextBlock>
+                        </GroupBox>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Прочитать" Height="15pt" Margin="10 10 10 5" Click="Button_Click_1"/>
+                            <Button Content="Вывести следующую" Height="15pt" Margin="10 10 10 5" Click="Button_Click_2"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Window>
