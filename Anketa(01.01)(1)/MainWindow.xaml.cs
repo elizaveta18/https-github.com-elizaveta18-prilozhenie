@@ -64,13 +64,13 @@ namespace Anketa_01._01__1_
                 wu.Write(p1.dopinfo);
             }
         }
-        
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             pip = new people[1];
-            using(BinaryReader br = new BinaryReader(File.Open("export.txt", FileMode.Open)))
+            using (BinaryReader br = new BinaryReader(File.Open("export.txt", FileMode.Open)))
             {
-                
+
                 int i = 0;
                 while (br.PeekChar() > -1)
                 {
@@ -82,7 +82,7 @@ namespace Anketa_01._01__1_
                     Array.Resize(ref pip, pip.Length + 1);
                 }
             }
-            
+
             n.Text = pip[ind].name;
             Na.Text = pip[ind].dr;
             Nav.Text = pip[ind].gender;
