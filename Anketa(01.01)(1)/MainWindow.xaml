@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Anketa_01._01__1_"
         mc:Ignorable="d"
-        Title="Анкета" Height="450" Width="800">
+        Title="Анкета" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
@@ -52,7 +52,7 @@
                                 <CheckBox x:Name="psih" Height="15pt">Нужен психолог</CheckBox>
                             </StackPanel>
                         </GroupBox>
-                        <Button Content="Записать" Margin="55 5 55 10" Click="Button_Click"/>
+                        <Button Content="Записать" Margin="55 5 55 10" Click="Button_Click" Background="White"/>
                     </StackPanel>
                 </GroupBox>
 
@@ -71,8 +71,8 @@
                             <TextBlock x:Name="Navi" Height="20pt"></TextBlock>
                         </GroupBox>
                         <StackPanel Orientation="Horizontal">
-                            <Button Content="Прочитать" Height="15pt" Margin="10 10 10 5" Click="Button_Click_1"/>
-                            <Button Content="Вывести следующую" Height="15pt" Margin="10 10 10 5" Click="Button_Click_2"/>
+                            <Button Content="Прочитать" Height="15pt" Margin="10 10 10 5" Click="Button_Click_1" Background="White"/>
+                            <Button Content="Вывести следующую" Height="15pt" Margin="10 10 10 5" Click="Button_Click_2" Background="White"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
