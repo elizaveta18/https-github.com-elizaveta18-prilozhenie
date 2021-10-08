@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Anketa_01._01__1_"
         mc:Ignorable="d"
-        Title="Анкета" Height="500" Width="800">
+        Title="Анкета" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+            <TextBlock Text="Заголовок"/>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <GroupBox Width="170pt" Height="320pt" Header="Введите данные о себе" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0 0 20">
                 <StackPanel Orientation="Vertical">
@@ -30,10 +43,10 @@
                             <CheckBox x:Name="psih" Height="15pt">Нужен психолог</CheckBox>
                         </StackPanel>
                     </GroupBox>
-                    <Button Content="Записать" Click="Button_Click"/>
+                    <Button Content="Записать" Margin="55 5 55 10" Click="Button_Click"/>
                 </StackPanel>
             </GroupBox>
-            <!--<Button x:Name="bf" >Записать</Button>-->
+
             <GroupBox Width="170pt" Height="280pt" Header="Считывание информации" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20 0 0 20">
                 <StackPanel Orientation="Vertical">
                     <GroupBox Header="Имя" Margin="10 10 10 5" Height="30pt">
@@ -55,5 +68,6 @@
                 </StackPanel>
             </GroupBox>
         </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
