@@ -40,9 +40,8 @@ namespace Anketa_01._01__1_.pages
             BaseConnect.BaseModel.SaveChanges();//сонхронизировать с сервером
 
             //создаем запись в таблице Users, соответствующую данной
-            users User = new users() { name = txtName.Text, id = logPass.id, gender = (int)listGenders.SelectedValue, dr = (DateTime)dtDr.SelectedDate };
+            users User = new users() { name = nameTextBox.Text, id = logPass.id, gender = (int)listGenders.SelectedValue, dr = (DateTime)dateBirth.SelectedDate };
             BaseConnect.BaseModel.users.Add(User);
-
 
             foreach (traits t in lbTarits.SelectedItems)
             {
@@ -53,6 +52,11 @@ namespace Anketa_01._01__1_.pages
             }
             BaseConnect.BaseModel.SaveChanges();
             MessageBox.Show("Данные записаны успешно");//обратная связь с пользователем
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            LoadPages.MainFrame.GoBack();
         }
 
         private void txtLogin_TextChanged(object sender, TextChangedEventArgs e)
