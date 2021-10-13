@@ -20,7 +20,7 @@
         <DockPanel Grid.ColumnSpan="1" LastChildFill="True">
             <Image Source="/Image/9AyS-GZ-btg.jpg" Grid.Row="1"/>
         </DockPanel>
-        <TextBlock Text="$$$$ Не упусти возможность выпить $$$$" Grid.ColumnSpan="2" Grid.Row="2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="$$$$ Не упусти возможность выпить $$$$" Grid.ColumnSpan="2" Grid.Row="2" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0.852"/>
