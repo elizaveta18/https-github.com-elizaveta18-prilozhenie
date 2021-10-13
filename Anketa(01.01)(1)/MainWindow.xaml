@@ -16,9 +16,20 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <!--<StackPanel Orientation="Horizontal" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center">-->
+        <DockPanel Grid.ColumnSpan="1" LastChildFill="True">
             <Image Source="/Image/9AyS-GZ-btg.jpg" Grid.Row="1"/>
-        </StackPanel>
+        </DockPanel>
+        <TextBlock Text="$$$$ Не упусти возможность выпить $$$$" Grid.ColumnSpan="2" Grid.Row="2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0.852"/>
+                    <GradientStop Color="#FFFD3CC0"/>
+                </LinearGradientBrush>
+            </TextBlock.Background>
+        </TextBlock>
+        <Frame Name="frmMain" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+        <!--</StackPanel>-->
         <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="/Image/_QwWyzESe9I.jpg" Grid.Row="1"/>
         </StackPanel>
