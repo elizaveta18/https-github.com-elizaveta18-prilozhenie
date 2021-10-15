@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Anketa_01._01__1_.pages;
 
 namespace Anketa_01._01__1_.pages
 {
@@ -59,6 +60,11 @@ namespace Anketa_01._01__1_.pages
         private void btnReg_Click(object sender, RoutedEventArgs e)
         {
             LoadPages.MainFrame.Navigate(new Page1());
+        }
+
+        private void txtLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

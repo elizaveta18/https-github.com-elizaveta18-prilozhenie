@@ -41,8 +41,6 @@
                             <ListBox Name="lbTarits" ItemTemplate="{StaticResource cbCells}" SelectionMode="Multiple"/>
                         </StackPanel>
                     </GroupBox>
-                    <Button  Click="Button_Click" Content="Записать" Margin="5 5 650 1" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFF729B6" RenderTransformOrigin="0.502,0.51">
-                    </Button>
                     <Button x:Name="btnBack" Content="Назад" Margin="10 5 600 1" Click="btnBack_Click" Background="White" RenderTransformOrigin="0.5,0.51"/>
             </StackPanel>
         </GroupBox>

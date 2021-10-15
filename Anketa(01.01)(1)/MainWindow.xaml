@@ -28,6 +28,6 @@
             </TextBlock.Background>
         </TextBlock>
         <Image Source="/Image/_QwWyzESe9I.jpg" Grid.Row="1"/>
-        <Frame Name="frmMain" Grid.Row="1" NavigationUIVisibility="Hidden" Navigated="frmMain_Navigated" Grid.ColumnSpan="2" Margin="190,0,9.6,0"/>
+        <Frame x:Name="frmMain" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

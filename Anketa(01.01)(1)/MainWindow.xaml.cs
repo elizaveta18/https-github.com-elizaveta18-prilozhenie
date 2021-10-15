@@ -17,16 +17,25 @@ using Anketa_01._01__1_.pages;
 
 namespace Anketa_01._01__1_
 {
+    public static class User
+    {
+        public static Frame frmMain;
+    }
+    public static class DB
+    {
+        public static Entities DataBase;
+        public static auth currentUser;
+    }
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            frmMain.Navigate(new Page());
-            LoadPages.MainFrame = frmMain;
+            User.frmMain = frmMain;
+            frmMain.Navigate(new Page2());
             BaseConnect.BaseModel = new Entities();
         }
 

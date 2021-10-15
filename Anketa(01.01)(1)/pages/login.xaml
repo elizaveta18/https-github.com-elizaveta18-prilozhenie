@@ -8,18 +8,19 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="login">
     <Grid>
-        <GroupBox Header="Введите регистрационные данные">
+        <StackPanel>
+            <GroupBox Header="Введите регистрационные данные">
             <StackPanel>
-                <GroupBox Header="Введите логин">
-                    <TextBox x:Name="txtLogin"/>
+                    <GroupBox Header="Введите логин" >
+                    <TextBox x:Name="txtLogin" TextChanged="txtLogin_TextChanged"/>
                 </GroupBox>
-                <GroupBox Header="Введите пароль">
+                    <GroupBox Header="Введите пароль">
                     <PasswordBox x:Name="txtPassword"/>
                 </GroupBox>
-                <Button Content="Авторизоваться" Name="btnLogin"  Margin="20 5 600 1" Click="btnLogin_Click" IsDefault="True" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFF729B6"/>
-                <!--Свойство IsDefault активирует кнопку при нажатии enter, IsCancel - при нажатии Escape-->
-                <Button Content="Зарегистрироваться" Name="btnReg" Margin="20 5 600 1" Click="btnReg_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFF729B6"/>
-            </StackPanel>
-        </GroupBox>
+              </StackPanel>
+            </GroupBox>
+            <Button x:Name="btnLogin" Content="Авторизоваться" Click="btnLogin_Click" IsDefault="True" />
+            <Button x:Name="btnReg" Content="Зарегистрироваться" Click="btnReg_Click" />
+        </StackPanel>
     </Grid>
 </Page>
