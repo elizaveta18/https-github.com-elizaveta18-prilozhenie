@@ -21,37 +21,12 @@ namespace Anketa_01._01__1_.pages
     /// </summary>
     public partial class Page1 : Page
     {
-        private auth SelectedUser;
-        public Page1(auth SelectedUSer)
+        public Page1()
         {
             InitializeComponent();
             listGenders.ItemsSource = DB.Base.genders.ToList();
             listGenders.SelectedValuePath = "id";
-            listGenders.DisplayMemberPath = "gender";
-            this.SelectedUser = SelectedUSer;
-
-            txtLogin.Text = SelectedUser.login;
-            nameTextBox.Text = SelectedUser.users.name;
-            dateBirth.SelectedDate = SelectedUser.users.dr;
-            listGenders.SelectedIndex = SelectedUser.users.gender - 1;
-            List<users_to_traits> trs = SelectedUser.users.users_to_traits.ToList();
-            foreach (users_to_traits tr in trs)
-            {
-                string trName = DB.Base.traits.FirstOrDefault(x => x.id == tr.id_trait).trait;
-                if ((string)goodCB.Content == trName)
-                {
-                    goodCB.IsChecked = true;
-                }
-                if ((string)nejnCB.Content == trName)
-                {
-                    nejnCB.IsChecked = true;
-                }
-                if ((string)laskovCB.Content == trName)
-                {
-                    laskovCB.IsChecked = true;
-                }
-
-            }
+            listGenders.DisplayMemberPath = "gender";         
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -72,25 +47,25 @@ namespace Anketa_01._01__1_.pages
             data.dr = dateBirth.SelectedDate.Value;
             data.gender = (int)listGenders.SelectedValue;
             DB.Base.users.Add(data);
-            if (goodCB.IsChecked == true)
+            if (good.IsChecked == true)
             {
                 users_to_traits tr = new users_to_traits();
                 tr.id_user = logPass.id;
-                tr.id_trait = DB.Base.traits.FirstOrDefault(x => x.trait == goodCB.Content.ToString()).id;
+                tr.id_trait = DB.Base.traits.FirstOrDefault(x => x.trait == good.Content.ToString()).id;
                 DB.Base.users_to_traits.Add(tr);
             }
-            if (nejnCB.IsChecked == true)
+            if (zloi.IsChecked == true)
             {
                 users_to_traits tr = new users_to_traits();
                 tr.id_user = logPass.id;
-                tr.id_trait = DB.Base.traits.FirstOrDefault(x => x.trait == nejnCB.Content.ToString()).id;
+                tr.id_trait = DB.Base.traits.FirstOrDefault(x => x.trait == zloi.Content.ToString()).id;
                 DB.Base.users_to_traits.Add(tr);
             }
-            if (laskovCB.IsChecked == true)
+            if (psix.IsChecked == true)
             {
                 users_to_traits tr = new users_to_traits();
                 tr.id_user = logPass.id;
-                tr.id_trait = DB.Base.traits.FirstOrDefault(x => x.trait == laskovCB.Content.ToString()).id;
+                tr.id_trait = DB.Base.traits.FirstOrDefault(x => x.trait == psix.Content.ToString()).id;
                 DB.Base.users_to_traits.Add(tr);
             }                      
             DB.Base.SaveChanges();

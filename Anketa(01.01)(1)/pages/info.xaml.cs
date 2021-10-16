@@ -18,14 +18,14 @@ namespace Anketa_01._01__1_
     /// <summary>
     /// Логика взаимодействия для Page1.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class Page4 : Page
     {
-        public Page1()
+        public Page4()
         {
             InitializeComponent();
         }
 
-        public Page1(auth CurrentUser)
+        public Page4(auth CurrentUser)
         {
             InitializeComponent();
             try

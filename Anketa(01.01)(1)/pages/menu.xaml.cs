@@ -62,7 +62,7 @@ namespace Anketa_01._01__1_.pages
 
         private void btnEditUser_Click(object sender, RoutedEventArgs e)
         {
-            User.frmMain.Navigate(new Page1(SelectedUser()));
+            User.frmMain.Navigate(new Page5(SelectedUser()));
         }
     }
 }
