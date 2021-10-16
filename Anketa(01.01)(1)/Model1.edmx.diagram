@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a8ce5deda9824e8cbe4b2e9c8b228c50" Name="Diagram1">
+      <Diagram DiagramId="e3180eb5dbbf46e79ae94a075e36086f" Name="Diagram1">
         <EntityTypeShape EntityType="WPF_test_41PModel.auth" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="WPF_test_41PModel.genders" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="WPF_test_41PModel.roles" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />

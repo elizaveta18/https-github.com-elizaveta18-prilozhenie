@@ -37,11 +37,11 @@ namespace Anketa_01._01__1_.pages
                     DB.currentUser = currentUser;
                     if (DB.currentUser.role == 1)
                     {
-                        User.frmMain.Navigate(new Page3());
+                        User.frmMain.Navigate(new Page1());
                     }
                     else if (DB.currentUser.role == 2)
                     {
-                        User.frmMain.Navigate(new Page1());
+                        User.frmMain.Navigate(new Page3());
                     }
                 }
                 else

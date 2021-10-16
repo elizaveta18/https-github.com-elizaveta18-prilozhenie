@@ -21,12 +21,37 @@ namespace Anketa_01._01__1_.pages
     /// </summary>
     public partial class Page1 : Page
     {
-        public Page1()
+        private auth SelectedUser;
+        public Page1(auth SelectedUSer)
         {
             InitializeComponent();
             listGenders.ItemsSource = DB.Base.genders.ToList();
             listGenders.SelectedValuePath = "id";
             listGenders.DisplayMemberPath = "gender";
+            this.SelectedUser = SelectedUSer;
+
+            txtLogin.Text = SelectedUser.login;
+            nameTextBox.Text = SelectedUser.users.name;
+            dateBirth.SelectedDate = SelectedUser.users.dr;
+            listGenders.SelectedIndex = SelectedUser.users.gender - 1;
+            List<users_to_traits> trs = SelectedUser.users.users_to_traits.ToList();
+            foreach (users_to_traits tr in trs)
+            {
+                string trName = DB.Base.traits.FirstOrDefault(x => x.id == tr.id_trait).trait;
+                if ((string)goodCB.Content == trName)
+                {
+                    goodCB.IsChecked = true;
+                }
+                if ((string)nejnCB.Content == trName)
+                {
+                    nejnCB.IsChecked = true;
+                }
+                if ((string)laskovCB.Content == trName)
+                {
+                    laskovCB.IsChecked = true;
+                }
+
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -40,16 +65,34 @@ namespace Anketa_01._01__1_.pages
             auth logPass = new auth() { login = txtLogin.Text, password = txtPass.Password, role = 2 };//создать новую запись
             DB.Base.auth.Add(logPass);//добавить в модель
             DB.Base.SaveChanges();//сонхронизировать с сервером
-            //создаем запись в таблице Users, соответствующую данной
-            users User = new users() { name = nameTextBox.Text, id = logPass.id, gender = (int)listGenders.SelectedValue, dr = (DateTime)dateBirth.SelectedDate };
-            DB.Base.users.Add(User);
-            foreach (traits t in lbTarits.SelectedItems)
+            //создаем запись в таблице Users, соответствующую данной                 
+            users data = new users();
+            data.id = logPass.id;
+            data.name = nameTextBox.Text;
+            data.dr = dateBirth.SelectedDate.Value;
+            data.gender = (int)listGenders.SelectedValue;
+            DB.Base.users.Add(data);
+            if (goodCB.IsChecked == true)
             {
-                users_to_traits UTT = new users_to_traits();
-                UTT.id_user = User.id;
-                UTT.id_trait = t.id;
-                DB.Base.users_to_traits.Add(UTT);
+                users_to_traits tr = new users_to_traits();
+                tr.id_user = logPass.id;
+                tr.id_trait = DB.Base.traits.FirstOrDefault(x => x.trait == goodCB.Content.ToString()).id;
+                DB.Base.users_to_traits.Add(tr);
             }
+            if (nejnCB.IsChecked == true)
+            {
+                users_to_traits tr = new users_to_traits();
+                tr.id_user = logPass.id;
+                tr.id_trait = DB.Base.traits.FirstOrDefault(x => x.trait == nejnCB.Content.ToString()).id;
+                DB.Base.users_to_traits.Add(tr);
+            }
+            if (laskovCB.IsChecked == true)
+            {
+                users_to_traits tr = new users_to_traits();
+                tr.id_user = logPass.id;
+                tr.id_trait = DB.Base.traits.FirstOrDefault(x => x.trait == laskovCB.Content.ToString()).id;
+                DB.Base.users_to_traits.Add(tr);
+            }                      
             DB.Base.SaveChanges();
             MessageBox.Show("Данные записаны успешно");//обратная связь с пользователем
         }

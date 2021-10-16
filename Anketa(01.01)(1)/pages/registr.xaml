@@ -5,12 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Anketa_01._01__1_.pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page1" Height="450" Width="800">
+      d:DesignHeight="400" d:DesignWidth="600"
+      Title="Page1" Height="400" Width="600">
     <Page.Resources>
         <ControlTemplate TargetType="Button" x:Key="CTbtn1">
             <Border>
-                <TextBlock Foreground="Aqua" Text="записать"/>
+                <TextBlock Foreground="Black" Text="Записать"/>
             </Border>
         </ControlTemplate>
         <DataTemplate x:Key="cbCells">
@@ -19,7 +19,7 @@
     </Page.Resources>
     <Grid>
         <ScrollViewer>
-            <GroupBox Header="Введите данные о себе" Margin="20">
+            <GroupBox Header="Введите данные о себе" Margin="40">
                 <StackPanel>
                     <GroupBox Header="Введите логин">
                         <TextBox x:Name="txtLogin"/>
@@ -36,9 +36,11 @@
                     <GroupBox Header="Введите пол">
                         <ListBox x:Name="listGenders"/>
                     </GroupBox>
-                    <GroupBox Header="Введите качества личности">
-                        <StackPanel>
-                            <ListBox Name="lbTarits" ItemTemplate="{StaticResource cbCells}" SelectionMode="Multiple"/>
+                    <GroupBox Header="Введите качества">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <CheckBox x:Name="goodCB" Height="15pt">Добрый</CheckBox>
+                            <CheckBox x:Name="nejnCB" Height="15pt">Злой</CheckBox>
+                            <CheckBox x:Name="laskovCB" Height="15pt">Нужен психолог</CheckBox>
                         </StackPanel>
                     </GroupBox>
                     <Button  Click="Button_Click"  Template="{StaticResource CTbtn1}">

@@ -20,10 +20,20 @@ namespace Anketa_01._01__1_.pages
     /// </summary>
     public partial class Page3 : Page
     {
+        public async void Load()
+        {
+            while (true)
+            {
+                dgUsers.ItemsSource = DB.Base.auth.ToList();
+                await Task.Delay(1000);
+            }
+        }
+
         public Page3()
         {
             InitializeComponent();
             dgUsers.ItemsSource = DB.Base.auth.ToList();
+            Load();
         } 
 
         private void btnSaveCahanges_Click(object sender, RoutedEventArgs e)
@@ -45,5 +55,14 @@ namespace Anketa_01._01__1_.pages
             User.frmMain.GoBack();
         }
 
+        private auth SelectedUser()
+        {
+            return (auth)dgUsers.SelectedItem;
+        }
+
+        private void btnEditUser_Click(object sender, RoutedEventArgs e)
+        {
+            User.frmMain.Navigate(new Page1(SelectedUser()));
+        }
     }
 }

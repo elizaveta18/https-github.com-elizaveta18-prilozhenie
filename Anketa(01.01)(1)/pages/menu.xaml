@@ -5,12 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Anketa_01._01__1_.pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="650"
       Title="menu">
     <Grid>
-        <ScrollViewer>
-            <StackPanel>
-                <DataGrid x:Name="dgUsers" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical">
+                <DataGrid x:Name="dgUsers" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Логин" Binding="{Binding login}" />
                         <DataGridTextColumn Header="Пароль" Binding="{Binding password}"/>
@@ -21,12 +21,11 @@
                         <DataGridTextColumn Header="Пол" Binding="{Binding users.genders.gender}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button x:Name="btnSaveCahanges" Content="Сохранить изменения"  Margin="10 5 610 1"  FontSize="15" Click="btnSaveCahanges_Click" Background="{x:Null}" BorderBrush="#FFC5BCBC" Foreground="#FFF729B6"/>
-                <TextBlock Text="Удаление пользователя из таблицы:" FontSize="15"/>
-                <Button Name="btnDeleteUser" Content="Удалить выбранного пользователя" Margin="10 5 500 1" FontSize="15" Click="btnDeleteUser_Click" Background="{x:Null}" BorderBrush="#FFC5BCBC" Foreground="#FFF729B6"/>
-                <Button Name="btnEditUser" Content="Редактировать выбранного пользователя" Margin="10 5 470 1" FontSize="15" Background="{x:Null}" BorderBrush="#FFC5BCBC" Foreground="#FFF729B6"/>
-                <Button Name="btnBack" Content="Назад" Margin="10 5 700 1" FontSize="15" IsCancel="True" Click="btnBack_Click" Background="{x:Null}" BorderBrush="#FFC5BCBC" Foreground="#FFF729B6" RenderTransformOrigin="0.503,0.508"/>
-
+                <Button x:Name="btnSaveCahanges" Content="Сохранить изменения"  Margin="10 5 250 1" Click="btnSaveCahanges_Click" Background="{x:Null}" BorderBrush="#FFC5BCBC" Foreground="#FFF729B6"/>
+                <TextBlock Text="Удаление пользователя из таблицы:" FontSize="13"/>
+                <Button Name="btnDeleteUser" Content="Удалить выбранного пользователя" Margin="10 5 250 1" Click="btnDeleteUser_Click" Background="{x:Null}" BorderBrush="#FFC5BCBC" Foreground="#FFF729B6"/>
+                <Button Name="btnEditUser" Content="Редактировать выбранного пользователя" Margin="10 5 250 1" Background="{x:Null}" BorderBrush="#FFC5BCBC" Foreground="#FFF729B6" Click="btnEditUser_Click"/>
+                <Button Name="btnBack" Content="Назад" Margin="10 5 450 1" IsCancel="True" Click="btnBack_Click" Background="{x:Null}" BorderBrush="#FFC5BCBC" Foreground="#FFF729B6" RenderTransformOrigin="0.503,0.508"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
