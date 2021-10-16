@@ -12,7 +12,7 @@
             <GroupBox Header="Введите регистрационные данные">
             <StackPanel>
                     <GroupBox Header="Введите логин" >
-                    <TextBox x:Name="txtLogin" TextChanged="txtLogin_TextChanged"/>
+                    <TextBox x:Name="txtLogin"/>
                 </GroupBox>
                     <GroupBox Header="Введите пароль">
                     <PasswordBox x:Name="txtPassword"/>

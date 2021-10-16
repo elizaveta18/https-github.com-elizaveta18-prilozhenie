@@ -34,7 +34,7 @@ namespace Anketa_01._01__1_
                 tbDR.Text = CurrentUser.users.dr.ToString("yyyy MMMM dd");
                 tbGender.Text = CurrentUser.users.genders.gender;
                 //список из качеств личности авторизованного пользователя
-                List<users_to_traits> LUTT = BaseConnect.BaseModel.users_to_traits.Where(x => x.id_user == CurrentUser.id).ToList();
+                List<users_to_traits> LUTT = DB.Base.users_to_traits.Where(x => x.id_user == CurrentUser.id).ToList();
                 foreach (users_to_traits UT in LUTT)
                 {
                     tbTraits.Text += UT.traits.trait + "; ";
@@ -48,7 +48,7 @@ namespace Anketa_01._01__1_
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            LoadPages.MainFrame.GoBack();
+            User.frmMain.GoBack();
         }
     }
 }

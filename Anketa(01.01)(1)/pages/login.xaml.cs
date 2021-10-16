@@ -30,20 +30,18 @@ namespace Anketa_01._01__1_.pages
         {
             try
             {
-                auth CurrentUser = BaseConnect.BaseModel.auth.FirstOrDefault(x => x.login == txtLogin.Text && x.password == txtPassword.Password);
-                if (CurrentUser != null)
-                {//сюда напишем алгоритм перехода на страницу в зависимости от роли
-                    switch (CurrentUser.role)
+                auth currentUser = DB.Base.auth.FirstOrDefault(x => x.login == txtLogin.Text && x.password == txtPassword.Password);
+                if (currentUser != null)
+                {
+                    MessageBox.Show($"Добро пожаловать, {currentUser.login}!");
+                    DB.currentUser = currentUser;
+                    if (DB.currentUser.role == 1)
                     {
-                        case 1:
-                            MessageBox.Show("Вы вошли как администратор");
-                            LoadPages.MainFrame.Navigate(new Page3());
-                            break;
-                        case 2:
-                        default:
-                            MessageBox.Show("Вы вошли как обычный пользователь");
-                            LoadPages.MainFrame.Navigate(new Page1());
-                            break;
+                        User.frmMain.Navigate(new Page3());
+                    }
+                    else if (DB.currentUser.role == 2)
+                    {
+                        User.frmMain.Navigate(new Page1());
                     }
                 }
                 else
@@ -59,12 +57,7 @@ namespace Anketa_01._01__1_.pages
 
         private void btnReg_Click(object sender, RoutedEventArgs e)
         {
-            LoadPages.MainFrame.Navigate(new Page1());
-        }
-
-        private void txtLogin_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            User.frmMain.Navigate(new Page1());
         }
     }
 }

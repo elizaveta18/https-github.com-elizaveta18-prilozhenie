@@ -23,20 +23,18 @@ namespace Anketa_01._01__1_
     }
     public static class DB
     {
-        public static Entities DataBase;
+        public static Entities Base;
         public static auth currentUser;
     }
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
-public partial class MainWindow : Window
+
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
             User.frmMain = frmMain;
             frmMain.Navigate(new Page2());
-            BaseConnect.BaseModel = new Entities();
+            DB.Base = new Entities();
         }
 
         private void frmMain_Navigated(object sender, NavigationEventArgs e)

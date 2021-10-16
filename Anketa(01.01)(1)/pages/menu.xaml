@@ -10,7 +10,7 @@
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <DataGrid x:Name="dgUsers" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionChanged="dgUsers_SelectionChanged">
+                <DataGrid x:Name="dgUsers" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Логин" Binding="{Binding login}" />
                         <DataGridTextColumn Header="Пароль" Binding="{Binding password}"/>
