@@ -20,29 +20,17 @@ namespace Anketa_01._01__1_
     /// </summary>
     public partial class Page4 : Page
     {
-        public Page4()
-        {
-            InitializeComponent();
-        }
-
         public Page4(auth CurrentUser)
         {
             InitializeComponent();
-            try
+            tbName.Content = CurrentUser.users.name;
+            tbDR.Content = CurrentUser.users.dr.ToString("yyyy MMMM dd");
+            tbGender.Content = CurrentUser.users.genders.gender;
+            DataContext = DB.currentUser;
+            List<users_to_traits> LUTT = DB.Base.users_to_traits.Where(x => x.id_user == CurrentUser.id).ToList();
+            foreach (users_to_traits UT in LUTT)
             {
-                tbName.Text = CurrentUser.users.name;
-                tbDR.Text = CurrentUser.users.dr.ToString("yyyy MMMM dd");
-                tbGender.Text = CurrentUser.users.genders.gender;
-                //список из качеств личности авторизованного пользователя
-                List<users_to_traits> LUTT = DB.Base.users_to_traits.Where(x => x.id_user == CurrentUser.id).ToList();
-                foreach (users_to_traits UT in LUTT)
-                {
-                    tbTraits.Text += UT.traits.trait + "; ";
-                }
-            }
-            catch
-            {
-                MessageBox.Show("информации о вас нет в системе");
+                lbInfo.Content += UT.traits.trait + "; ";
             }
         }
 
@@ -50,5 +38,5 @@ namespace Anketa_01._01__1_
         {
             User.frmMain.GoBack();
         }
-    }
+    }        
 }

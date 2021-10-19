@@ -13,18 +13,18 @@
                 <GroupBox Header="Информация о пользователе" Margin="15" FontSize="15">
                     <StackPanel>
                         <GroupBox Header="Имя">
-                            <TextBlock x:Name="tbName"/>
+                            <Label x:Name="tbName" Content="{Binding Path=users.name}"/>
                         </GroupBox>
                         <GroupBox Header="Дата рождения">
-                            <TextBlock x:Name="tbDR" />
+                            <Label x:Name="tbDR" Content="{Binding Path=users.dr}" />
                         </GroupBox>
                         <GroupBox Header="Пол">
-                            <TextBlock  x:Name="tbGender"/>
+                            <Label  x:Name="tbGender" Content="{Binding Path=users.genders.gender}"/>
                         </GroupBox>
                         <GroupBox Header="Качества личности">
-                            <TextBlock x:Name="tbTraits" />
+                            <Label x:Name="lbInfo" />
                         </GroupBox>
-                        <Button Content="Назад" Name="btnBack" Margin="15 5 60 5" Click="btnBack_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFF729B6"/>
+                        <Button Content="Назад" Name="btnBack" Margin="15 5 60 5" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFF729B6" Click="btnBack_Click"/>
                     </StackPanel>
                 </GroupBox>
             </WrapPanel>

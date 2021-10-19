@@ -37,10 +37,10 @@
                         <ListBox x:Name="listGenders"/>
                     </GroupBox>
                     <GroupBox Header="Введите качества">
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <StackPanel>
                             <CheckBox x:Name="good" Height="15pt">Добрый</CheckBox>
-                            <CheckBox x:Name="zloi" Height="15pt">Злой</CheckBox>
-                            <CheckBox x:Name="psix" Height="15pt">Нужен психолог</CheckBox>
+                            <CheckBox x:Name="zloi" Height="15pt">Нежный</CheckBox>
+                            <CheckBox x:Name="psix" Height="15pt">Ласковый</CheckBox>
                         </StackPanel>
                     </GroupBox>
                     <Button  Click="Button_Click"  Template="{StaticResource CTbtn1}">

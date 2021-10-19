@@ -32,16 +32,18 @@ namespace Anketa_01._01__1_.pages
             {
                 auth currentUser = DB.Base.auth.FirstOrDefault(x => x.login == txtLogin.Text && x.password == txtPassword.Password);
                 if (currentUser != null)
-                {
-                    MessageBox.Show($"Добро пожаловать, {currentUser.login}!");
-                    DB.currentUser = currentUser;
-                    if (DB.currentUser.role == 1)
+                {//сюда напишем алгоритм перехода на страницу в зависимости от роли
+                    switch (currentUser.role)
                     {
-                        User.frmMain.Navigate(new Page4());
-                    }
-                    else if (DB.currentUser.role == 2)
-                    {
-                        User.frmMain.Navigate(new Page3());
+                        case 1:
+                            MessageBox.Show("Вы вошли как администратор");
+                            User.frmMain.Navigate(new Page4(currentUser));
+                            break;
+                        case 2:
+                        default:
+                            MessageBox.Show("Вы вошли как обычный пользователь");
+                            User.frmMain.Navigate(new List());
+                            break;
                     }
                 }
                 else

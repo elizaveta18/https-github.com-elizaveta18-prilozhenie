@@ -70,6 +70,7 @@ namespace Anketa_01._01__1_.pages
             }                      
             DB.Base.SaveChanges();
             MessageBox.Show("Данные записаны успешно");//обратная связь с пользователем
+            User.frmMain.GoBack();
         }
     }
 }
