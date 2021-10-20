@@ -45,7 +45,7 @@
                     </GroupBox>
                     <Button  Click="Button_Click"  Template="{StaticResource CTbtn1}">
                     </Button>
-                    <Button Content="Назад" Name="btnBack" Click="btnBack_Click"/>
+                    <Button Content="Назад" Name="btnBack" Margin="30 5 600 5" Click="btnBack_Click" Background="{x:Null}" Foreground="#FFF729B6"/>
                 </StackPanel>
             </GroupBox>
         </ScrollViewer>

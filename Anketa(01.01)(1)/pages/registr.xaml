@@ -18,7 +18,7 @@
         </DataTemplate>
     </Page.Resources>
     <Grid>
-        <ScrollViewer>
+        <ScrollViewer >
             <GroupBox Header="Введите данные о себе" Margin="40">
                 <StackPanel>
                     <GroupBox Header="Введите логин">
@@ -43,9 +43,8 @@
                             <CheckBox x:Name="psix" Height="15pt">Ласковый</CheckBox>
                         </StackPanel>
                     </GroupBox>
-                    <Button  Click="Button_Click"  Template="{StaticResource CTbtn1}">
-                    </Button>
-                    <Button Content="Назад" Name="btnBack" Click="btnBack_Click"/>
+                    <Button  Click="Button_Click"  Template="{StaticResource CTbtn1}"/>
+                    <Button Content="Назад" Name="btnBack" Click="btnBack_Click"  Margin="20 5 390 5" Background="{x:Null}" Foreground="#FFF729B6"/>
                 </StackPanel>
             </GroupBox>
         </ScrollViewer>
