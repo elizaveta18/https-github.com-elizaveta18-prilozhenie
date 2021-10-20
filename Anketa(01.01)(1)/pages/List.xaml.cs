@@ -57,7 +57,7 @@ namespace Anketa_01._01__1_
         }
 
         private void Udal_Click(object sender, RoutedEventArgs e)
-        {
+        { 
 
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить пользователя из системы?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
             users Udal = (users)lbUsersList.SelectedItem;
