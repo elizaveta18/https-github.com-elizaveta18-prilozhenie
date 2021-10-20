@@ -27,33 +27,54 @@ namespace Anketa_01._01__1_.pages
             listGenders.ItemsSource = DB.Base.genders.ToList();
             listGenders.SelectedValuePath = "id";
             listGenders.DisplayMemberPath = "gender";
+
             this.Izmenenie = Izmenenie;
-            txtLogin.Text = Izmenenie.login;
-            txtPass.Password = Izmenenie.password;
-            nameTextBox.Text = Izmenenie.users.name;
-            dateBirth.SelectedDate = Izmenenie.users.dr;
-            listGenders.SelectedIndex = Izmenenie.users.gender - 1;
-            List<users_to_traits> trs = Izmenenie.users.users_to_traits.ToList();
-            foreach (users_to_traits tr in trs)
+            if (Izmenenie.login != null)
             {
-                string trName = DB.Base.traits.FirstOrDefault(x => x.id == tr.id_trait).trait;
-                if ((string)good.Content == trName)
+                txtLogin.Text = Izmenenie.login;
+                try
                 {
-                    good.IsChecked = true;
+                    if (Izmenenie.users != null)
+                    {
+                        nameTextBox.Text = Izmenenie.users.name;
+                        dateBirth.SelectedDate = Izmenenie.users.dr;
+                        listGenders.SelectedIndex = Izmenenie.users.gender - 1;
+                        List<users_to_traits> trs = Izmenenie.users.users_to_traits.ToList();
+                        foreach (users_to_traits tr in trs)
+                        {
+                            string trName = DB.Base.traits.FirstOrDefault(x => x.id == tr.id_trait).trait;
+                            if ((string)good.Content == trName)
+                            {
+                                good.IsChecked = true;
+                            }
+                            if ((string)zloi.Content == trName)
+                            {
+                                zloi.IsChecked = true;
+                            }
+                            if ((string)psix.Content == trName)
+                            {
+                                psix.IsChecked = true;
+                            }
+                        }
+                    }
                 }
-                if ((string)zloi.Content == trName)
+                catch (NullReferenceException ex)
                 {
-                    zloi.IsChecked = true;
                 }
-                if ((string)psix.Content == trName)
-                {
-                    psix.IsChecked = true;
-                }
-            }
+            }   
         }
+                
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (Izmenenie.login == null)
+            {
+                Izmenenie.login = txtLogin.Text;
+                Izmenenie.password = txtPass.Password;
+                Izmenenie.role = 2;
+                DB.Base.auth.Add(Izmenenie);
+                DB.Base.SaveChanges();
+            }
             string password;
             if (txtLogin.Text != "" && DB.Base.auth.FirstOrDefault(x => x.login == txtLogin.Text) == null || txtLogin.Text == Izmenenie.login)
             {
@@ -67,18 +88,34 @@ namespace Anketa_01._01__1_.pages
                     {
                         password = txtPass.Password;
                     }
-                    //Изменение данных выбранного пользователя
                     Izmenenie.login = txtLogin.Text;
                     Izmenenie.password = txtPass.Password;
-                    Izmenenie.users.name = nameTextBox.Text;
-                    Izmenenie.users.dr = (DateTime)dateBirth.SelectedDate;
-                    Izmenenie.users.gender = (int)listGenders.SelectedValue;
+
+                    if (Izmenenie.users == null)
+                    {
+                        users newData = new users();
+                        newData.id = Convert.ToInt32(Izmenenie.id);
+                        newData.name = nameTextBox.Text;
+                        newData.dr = (DateTime)dateBirth.SelectedDate;
+                        newData.gender = (int)listGenders.SelectedValue;
+                        DB.Base.users.Add(newData);
+                        DB.Base.SaveChanges();
+                    }
+                    else
+                    {
+                        Izmenenie.users.name = nameTextBox.Text;
+                        Izmenenie.users.dr = (DateTime)dateBirth.SelectedDate;
+                        Izmenenie.users.gender = (int)listGenders.SelectedValue;
+                    }
+
+                    //Вставка изменённых качеств
                     List<users_to_traits> trOnDelete = DB.Base.users_to_traits.Where(x => x.id_user == Izmenenie.id).ToList();
                     foreach (users_to_traits tr in trOnDelete)
                     {
                         DB.Base.users_to_traits.Remove(tr);
                     }
                     DB.Base.SaveChanges();
+
                     if (good.IsChecked == true)
                     {
                         users_to_traits tr = new users_to_traits();
@@ -100,6 +137,7 @@ namespace Anketa_01._01__1_.pages
                         tr.id_trait = DB.Base.traits.FirstOrDefault(x => x.trait == psix.Content.ToString()).id;
                         DB.Base.users_to_traits.Add(tr);
                     }
+
                     DB.Base.SaveChanges();
                     MessageBox.Show("Изменение данных выполнено успешно");
                     User.frmMain.GoBack();

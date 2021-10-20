@@ -291,7 +291,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="auth" EntityType="Self.auth" />
           <EntitySet Name="genders" EntityType="Self.genders" />
           <EntitySet Name="roles" EntityType="Self.roles" />
@@ -325,7 +325,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище WPF_test_41PModelContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище WPF_test_41PModelContainer" CdmEntityContainer="Entities1">
           <EntitySetMapping Name="auth">
             <EntityTypeMapping TypeName="WPF_test_41PModel.auth">
               <MappingFragment StoreEntitySet="auth">
