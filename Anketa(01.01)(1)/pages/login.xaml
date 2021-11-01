@@ -8,19 +8,21 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="login">
     <Grid>
-        <StackPanel>
-            <GroupBox Header="Введите регистрационные данные">
-            <StackPanel>
-                    <GroupBox Header="Введите логин" >
-                    <TextBox x:Name="txtLogin"/>
-                </GroupBox>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <GroupBox Header="Введите регистрационные данные" Height="120" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <StackPanel>
+                    <GroupBox Header="Введите логин">
+                        <TextBox x:Name="txtLogin" />
+                    </GroupBox>
                     <GroupBox Header="Введите пароль">
-                    <PasswordBox x:Name="txtPassword"/>
-                </GroupBox>
-              </StackPanel>
+                        <PasswordBox x:Name="txtPassword"/>
+                    </GroupBox>
+                </StackPanel>
             </GroupBox>
-            <Button x:Name="btnLogin" Content="Авторизоваться" Margin="300 5 300 5" Click="btnLogin_Click" IsDefault="True" Background="{x:Null}" Foreground="#FFF729B6" />
-            <Button x:Name="btnReg" Content="Зарегистрироваться" Margin="300 5 300 5" Click="btnReg_Click" Foreground="#FFF729B6" Background="{x:Null}" />
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="btnLogin" Content="Авторизоваться" Height="25" Click="btnLogin_Click" IsDefault="True" Background="{x:Null}" Foreground="#FFF729B6" />
+                <Button x:Name="btnReg" Content="Зарегистрироваться" Height="25" Click="btnReg_Click" Foreground="#FFF729B6" Background="{x:Null}" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>
