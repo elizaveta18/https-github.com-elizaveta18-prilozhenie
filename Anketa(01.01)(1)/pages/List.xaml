@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Anketa_01._01__1_"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="750"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="List">
 
     <Page.Resources>
@@ -35,22 +35,46 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="397*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0"  Orientation="Horizontal">
             <GroupBox Header="от">
-                <TextBox Name="txtOT" Width="50" Margin="0,0,0,-0.4" Height="18" VerticalAlignment="Top"/>
+                <TextBox Name="txtOT" Width="50" Margin="0,0,0,-0.4" Height="18" VerticalAlignment="Top" PreviewTextInput="tbStart_PreviewTextInput" SelectionChanged="Filter"/>
             </GroupBox>
             <GroupBox Header="до">
-                <TextBox Name="txtDO" Width="50"/>
+                <TextBox Name="txtDO" Width="50" Margin="0,0,0,-0.4" Height="18" VerticalAlignment="Top" PreviewTextInput="tbStart_PreviewTextInput" SelectionChanged="Filter"/>
             </GroupBox>
-            <Button Name="btnGo" Content="Вывести" Click="btnGo_Click" Width="50" Margin="5" Background="{x:Null}" Foreground="#FFF729B6"/>
-            <Button Name="btnReset" Content="Сброс" Click="btnReset_Click" Width="50" Margin="5" Background="{x:Null}" Foreground="#FFF729B6"/>
-            <Button x:Name="Udal" Content="Удалить пользователя" Click="Udal_Click" Width="160" Margin="5" Uid="{Binding id}" Background="{x:Null}" Foreground="#FFF729B6"/>
-            <Button x:Name="red" Content="Редактировать пользователя" Click="red_Click" Width="180" Margin="5" Uid="{Binding id}" Background="{x:Null}" Foreground="#FFF729B6"/>
-            <Button Name="btnNaz" Content="Назад" Click="btnNaz_Click" Width="50" Margin="5" Background="{x:Null}" Foreground="#FFF729B6"/>
+            <GroupBox Header="Выберите пол">
+                <ComboBox x:Name="lbGenderFilter" Height="18" Margin="0,0,0.2,-0.4"  VerticalAlignment="Top" SelectionChanged="Filter"/>
+            </GroupBox>
+            <GroupBox Header="Имя">
+                <TextBox Name="txtNameFilter" Width="70" VerticalAlignment="Top" TextChanged="Filter"/>
+            </GroupBox>
+            <StackPanel >
+                <Button Name="btnReset" Content="Сброс" Click="btnReset_Click" Width="100" Margin="1" Background="{x:Null}" Foreground="#FFF729B6"/>
+                <Button Name="btnVoz" Content="Средний возраст" Click="btnVoz_Click" Width="100" Margin="1" Background="{x:Null}" Foreground="#FFF729B6"/>
+            </StackPanel>
+            <GroupBox Header="Записей на странице">
+                <TextBox x:Name="txtPageCount" TextChanged="txtPageCount_TextChanged" VerticalAlignment="Top" Margin="5,0,0,1"/>
+            </GroupBox>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10">
+                <TextBlock x:Name="txtPrev" Uid="prev" Text="Пред." MouseDown="GoPage_MouseDown"/>
+                <TextBlock x:Name="txt1" Uid="1" Text=" 1 " MouseDown="GoPage_MouseDown"/>
+                <TextBlock x:Name="txt2" Uid="2" Text=" 2 " MouseDown="GoPage_MouseDown"/>
+                <TextBlock x:Name="txt3" Uid="3" Text=" 3 " MouseDown="GoPage_MouseDown"/>
+                <TextBlock x:Name="txt4" Uid="4" Text=" 4 " MouseDown="GoPage_MouseDown"/>
+                <TextBlock x:Name="txt5" Uid="5" Text=" 5 " MouseDown="GoPage_MouseDown"/>
+                <TextBlock x:Name="txtNext" Uid="next" Text="След.." MouseDown="GoPage_MouseDown"/>
+            </StackPanel>
+            <TextBlock x:Name="txtCurentPage"/>
+            <TextBlock Name="txtCurrentPage1"/>
+            <StackPanel>
+            <Button x:Name="Udal" Content="Удалить польз"  Click="Udal_Click" Width="140" Uid="{Binding id}" Background="{x:Null}" Foreground="#FFF729B6"/>
+            <Button x:Name="red" Content="Редактировать польз" Click="red_Click" Width="140" Uid="{Binding id}" Background="{x:Null}" Foreground="#FFF729B6"/>
+            <Button Name="btnNaz" Content="Назад" Click="btnNaz_Click" Width="140" Background="{x:Null}" Foreground="#FFF729B6"/>
+            </StackPanel>
         </StackPanel>
-        <ListBox Name="lbUsersList" ItemTemplate="{StaticResource DT1}" Grid.Row="1"/>
+        <ListBox Name="lbUsersList" ItemTemplate="{StaticResource DT1}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Margin="10 10 10 30"></ListBox>
     </Grid>
 </Page>

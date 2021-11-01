@@ -11,7 +11,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="login" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="role" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="genders">
@@ -166,7 +166,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="role" Type="Int32" Nullable="false" />
           <NavigationProperty Name="roles" Relationship="Self.FK_auth_roles" FromRole="auth" ToRole="roles" />
           <NavigationProperty Name="users" Relationship="Self.FK_users_auth" FromRole="auth" ToRole="users" />
@@ -291,7 +291,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="auth" EntityType="Self.auth" />
           <EntitySet Name="genders" EntityType="Self.genders" />
           <EntitySet Name="roles" EntityType="Self.roles" />
@@ -325,7 +325,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище WPF_test_41PModelContainer" CdmEntityContainer="Entities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище WPF_test_41PModelContainer" CdmEntityContainer="Entities2">
           <EntitySetMapping Name="auth">
             <EntityTypeMapping TypeName="WPF_test_41PModel.auth">
               <MappingFragment StoreEntitySet="auth">
