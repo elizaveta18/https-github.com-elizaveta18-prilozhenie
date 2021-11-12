@@ -23,7 +23,7 @@ namespace Anketa_01._01__1_
     }
     public static class DB
     {
-        public static Entities2 Base;
+        public static Entities3 Base;
         public static auth currentUser;
     }
 
@@ -34,7 +34,7 @@ namespace Anketa_01._01__1_
             InitializeComponent();
             User.frmMain = frmMain;
             frmMain.Navigate(new Page2());
-            DB.Base = new Entities2();
+            DB.Base = new Entities3();
         }
 
         private void frmMain_Navigated(object sender, NavigationEventArgs e)

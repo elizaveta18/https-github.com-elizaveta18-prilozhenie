@@ -25,6 +25,7 @@ namespace Anketa_01._01__1_
         public List<auth> Anketa_01;
         List<users> users;
         List<users> l1;
+        PageChange pc = new PageChange();
         public List()
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace Anketa_01._01__1_
             lbGenderFilter.SelectedValuePath = "id";
             lbGenderFilter.DisplayMemberPath = "gender";
             l1 = users;
+            DataContext = pc;
         }      
         private void lbTraits_Loaded(object sender, RoutedEventArgs e)
         {
@@ -50,7 +52,6 @@ namespace Anketa_01._01__1_
                 int start = Convert.ToInt32(txtOT.Text) - 1;
                 int finish = Convert.ToInt32(txtDO.Text);
                 l1 = users.Skip(start).Take(finish - start).ToList();
-
             }
             catch
             {
@@ -61,13 +62,11 @@ namespace Anketa_01._01__1_
             {
                 if (lbGenderFilter.SelectedIndex != -1)
                     l1 = l1.Where(x => x.gender == Convert.ToInt32(lbGenderFilter.SelectedValue)).ToList();
-
             }
             catch
             {
                 //null
             }
-
             //по имени
             try
             {
@@ -80,13 +79,14 @@ namespace Anketa_01._01__1_
             {
                 //null
             }
-
             lbUsersList.ItemsSource = l1;
+            pc.Countlist = l1.Count;
         }
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
             lbUsersList.ItemsSource = users;//в качестве источника данных исходный список
+            l1 = users;
             lbGenderFilter.SelectedIndex = -1; //сбрасываем выбранный элемент списка
             txtNameFilter.Text = "";//сбрасываем фильтр на строку
             txtOT.Text = "";
@@ -116,113 +116,42 @@ namespace Anketa_01._01__1_
             User.frmMain.Navigate(new Page5(tUser));
             lbUsersList.ItemsSource = DB.Base.users.ToList();
         }
-
         private void tbStart_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));
         }
-        int currpg = 1;
         private void GoPage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            try
+            TextBlock tb = (TextBlock)sender;//определяем, какой текстовый блок был нажат           
+            //изменение номера страници при нажатии на кнопку
+            switch (tb.Uid)
             {
-                TextBlock tb = (TextBlock)sender;
-                int countList = users.Count;
-                int countzap = Convert.ToInt32(txtPageCount.Text);
-                int countpage = countList / countzap;
-
-                switch (tb.Uid)
-                {
-                    case "prev":
-                        currpg--;
-                        break;
-                    case "1":
-                        if (currpg < 3) currpg = 1;
-                        else if (currpg > countpage) currpg = countpage - 4;
-                        else currpg -= 2;
-                        break;
-                    case "2":
-                        if (currpg < 3) currpg = 2;
-                        else if (currpg > countpage) currpg = countpage - 3;
-                        else currpg -= 1;
-                        break;
-                    case "3":
-                        if (currpg < 3) currpg = 3;
-                        else if (currpg > countpage) currpg = countpage - 2;
-                        break;
-                    case "4":
-                        if (currpg < 3) currpg = 4;
-                        else if (currpg > countpage) currpg = countpage - 1;
-                        else currpg++;
-                        break;
-                    case "5":
-                        if (currpg < 3) currpg = 5;
-                        else if (currpg > countpage) currpg = countpage;
-                        else currpg += 2;
-                        break;
-                    case "next":
-                        currpg++;
-                        break;
-                    default:
-                        currpg = 1;
-                        break;
-                }
-                if (currpg < 3)
-                {
-                    txt1.Text = " 1 ";
-                    txt2.Text = " 2 ";
-                    txt3.Text = " 3 ";
-                    txt4.Text = " 4 ";
-                    txt5.Text = " 5 ";
-                }
-                else if (currpg > countpage - 2)
-                {
-                    txt1.Text = " " + (countpage - 4).ToString() + " ";
-                    txt2.Text = " " + (countpage - 3).ToString() + " ";
-                    txt3.Text = " " + (countpage - 2).ToString() + " ";
-                    txt4.Text = " " + (countpage - 1).ToString() + " ";
-                    txt5.Text = " " + (countpage).ToString() + " ";
-
-                }
-                else
-                {
-                    txt1.Text = " " + (currpg - 2).ToString() + " ";
-                    txt2.Text = " " + (currpg - 1).ToString() + " ";
-                    txt3.Text = " " + (currpg).ToString() + " ";
-                    txt4.Text = " " + (currpg + 1).ToString() + " ";
-                    txt5.Text = " " + (currpg + 2).ToString() + " ";
-
-                }
-                txtCurentPage.Text = "Текущая страница: " + (currpg).ToString();
-
-                if (currpg < 1) currpg = 1;
-                if (currpg >= countpage) currpg = countpage;
-
-                l1 = users.Skip(currpg * countzap - countzap).Take(countzap).ToList();
-                lbUsersList.ItemsSource = l1;
+                case "prev":
+                    pc.CurrentPage--;
+                    break;
+                case "next":
+                    pc.CurrentPage++;
+                    break;
+                default:
+                    pc.CurrentPage = Convert.ToInt32(tb.Text);
+                    break;
             }
-            catch
-            {
-                //null
-            }
+            //определение списка
+            lbUsersList.ItemsSource = l1.Skip(pc.CurrentPage * pc.CountPage - pc.CountPage).Take(pc.CountPage).ToList();
+            txtCurentPage.Text = "Текущая страница: " + (pc.CurrentPage).ToString();
         }
         private void txtPageCount_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
-                if (txtPageCount.Text == "")
-                {
-                    l1 = users.ToList();
-                }
-                else
-                    l1 = users.Take(Convert.ToInt32(txtPageCount.Text)).ToList();
-
-                lbUsersList.ItemsSource = l1;
+                pc.CountPage = Convert.ToInt32(txtPageCount.Text);
             }
             catch
             {
-                //null
+                pc.CountPage = l1.Count;
             }
+            pc.Countlist = users.Count;
+            lbUsersList.ItemsSource = l1.Skip(0).Take(pc.CountPage).ToList();
         }
 
         private void btnVoz_Click(object sender, RoutedEventArgs e)
@@ -234,8 +163,27 @@ namespace Anketa_01._01__1_
                 mas[i] = us.dr;
                 i++;
             }
-
             MessageBox.Show("Средний возраст: " + Func.AgeAVG(mas).ToString());
+        }
+        private void UserImage_Loaded(object sender, RoutedEventArgs e)
+        {
+            Image IMG = sender as Image;
+            int ind = Convert.ToInt32(IMG.Uid);
+            users U = DB.Base.users.FirstOrDefault(x => x.id == ind);
+            BitmapImage BI;
+            switch (U.gender)
+            {
+                case 1:
+                    BI = new BitmapImage(new Uri(@"/Image/mal.jpg", UriKind.Relative));
+                    break;
+                case 2:
+                    BI = new BitmapImage(new Uri(@"/Image/dev.jpg", UriKind.Relative));
+                    break;
+                default:
+                    BI = new BitmapImage(new Uri(@"/Image/dr.jpg", UriKind.Relative));
+                    break;
+            }
+            IMG.Source = BI;//помещаем картинку в image
         }
     }
 }
