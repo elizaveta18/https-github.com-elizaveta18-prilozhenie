@@ -30,6 +30,7 @@
                         <!--loaded - событие, которое происходит при создании элемента списка из шаблона-->
                     </GroupBox>
                     <Image x:Name="UserImage" Loaded="UserImage_Loaded" Uid="{Binding id}"/>
+                    <Button x:Name="BtmAddImage" Content="Загрузить/изменить изображение пользователя" Click="BtmAddImage_Click" Uid="{Binding id}"/>
                 </StackPanel>
             </GroupBox>
         </DataTemplate>
@@ -56,6 +57,18 @@
                 <Button Name="btnReset" Content="Сброс" Click="btnReset_Click" Width="100" Margin="1" Background="{x:Null}" Foreground="#FFF729B6"/>
                 <Button Name="btnVoz" Content="Средний возраст" Click="btnVoz_Click" Width="100" Margin="1" Background="{x:Null}" Foreground="#FFF729B6"/>
             </StackPanel>
+            <GroupBox Header="Сортировка">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <RadioButton Content ="по имени" Click="Sort_Click" Uid="name"/>
+                        <RadioButton Content ="по дате рождения" Click="Sort_Click" Uid="DR"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <RadioButton Content ="по возрастанию" Click="Sort_Click"/>
+                        <RadioButton x:Name="RBReverse" Content ="по убыванию" Click="Sort_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
             <GroupBox Header="Записей на странице">
                 <TextBox x:Name="txtPageCount" TextChanged="txtPageCount_TextChanged" VerticalAlignment="Top" Margin="5,0,0,1"/>
             </GroupBox>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Anketa_01._01__1_.pages;
 using ClassLibrary1;
+using Microsoft.Win32;
 
 namespace Anketa_01._01__1_
 {
@@ -165,25 +168,101 @@ namespace Anketa_01._01__1_
             }
             MessageBox.Show("Средний возраст: " + Func.AgeAVG(mas).ToString());
         }
+        //private void UserImage_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    Image IMG = sender as Image;
+        //    int ind = Convert.ToInt32(IMG.Uid);
+        //    users U = DB.Base.users.FirstOrDefault(x => x.id == ind);
+        //    BitmapImage BI;
+        //    switch (U.gender)
+        //    {
+        //        case 1:
+        //            BI = new BitmapImage(new Uri(@"/Image/maik.jpg", UriKind.Relative));
+        //            break;
+        //        case 2:
+        //            BI = new BitmapImage(new Uri(@"/Image/deva.jpg", UriKind.Relative));
+        //            break;
+        //        default:
+        //            BI = new BitmapImage(new Uri(@"/Image/cheba.jpg", UriKind.Relative));
+        //            break;
+        //    }
+        //    IMG.Source = BI;//помещаем картинку в image
+        //}
+
         private void UserImage_Loaded(object sender, RoutedEventArgs e)
         {
-            Image IMG = sender as Image;
+            System.Windows.Controls.Image IMG = sender as System.Windows.Controls.Image;
             int ind = Convert.ToInt32(IMG.Uid);
-            users U = DB.Base.users.FirstOrDefault(x => x.id == ind);
-            BitmapImage BI;
-            switch (U.gender)
+            users U = DB.Base.users.FirstOrDefault(x => x.id == ind);//запись о текущем пользователе
+            usersimage UI = DB.Base.usersimage.FirstOrDefault(x => x.id_user == ind);//получаем запись о картинке для текущего пользователя
+            BitmapImage BI = new BitmapImage();
+            if (UI != null)//если для текущего пользователя существует запись о его катринке
             {
-                case 1:
-                    BI = new BitmapImage(new Uri(@"/Image/mal.jpg", UriKind.Relative));
-                    break;
-                case 2:
-                    BI = new BitmapImage(new Uri(@"/Image/dev.jpg", UriKind.Relative));
-                    break;
-                default:
-                    BI = new BitmapImage(new Uri(@"/Image/dr.jpg", UriKind.Relative));
-                    break;
+                if (UI.path != null)//если присутствует путь к картинке
+                {
+                    BI = new BitmapImage(new Uri(UI.path, UriKind.Relative));
+                }
+                else//если присутствуют двоичные данные
+                {
+                    BI.BeginInit();//начать инициализацию BitmapImage (для помещения данных из какого-либо потока)
+                    BI.StreamSource = new MemoryStream(UI.image);//помещаем в источник данных двоичные данные из потока
+                    BI.EndInit();//закончить инициализацию
+                }
+            }
+            else//если в базе не содержится картинки, то ставим заглушку
+            {
+                switch (U.gender)//в зависимости от пола пользователя устанавливаем ту или иную картинку
+                {
+                    case 1:
+                        BI = new BitmapImage(new Uri(@"/Image/maik.jpg", UriKind.Relative));
+                        break;
+                    case 2:
+                        BI = new BitmapImage(new Uri(@"/Image/deva.jpg", UriKind.Relative));
+                        break;
+                    default:
+                        BI = new BitmapImage(new Uri(@"/Image/cheba.jpg", UriKind.Relative));
+                        break;
+                }
             }
             IMG.Source = BI;//помещаем картинку в image
+        }
+        private void BtmAddImage_Click(object sender, RoutedEventArgs e)
+        {
+            Button BTN = (Button)sender;
+            int ind = Convert.ToInt32(BTN.Uid);
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = ".jpg"; // задаем расширение по умолчанию
+            openFileDialog.Filter = "Изображения |*.jpg;*.png"; // задаем фильтр на форматы файлов
+            var result = openFileDialog.ShowDialog();
+            if (result == true)//если файл выбран
+            {
+                System.Drawing.Image UserImage = System.Drawing.Image.FromFile(openFileDialog.FileName);//создаем изображение
+                ImageConverter IC = new ImageConverter();//конвертер изображения в массив байт
+                byte[] ByteArr = (byte[])IC.ConvertTo(UserImage, typeof(byte[]));//непосредственно конвертация
+                usersimage UI = new usersimage() { id_user = ind, image = ByteArr };//создаем новый объект usersimage
+                DB.Base.usersimage.Add(UI);//добавляем его в модель
+                DB.Base.SaveChanges();//синхронизируем с базой
+                MessageBox.Show("картинка пользователя добавлена в базу");
+            }
+            else
+            {
+                MessageBox.Show("операция выбора изображения отменена");
+            }
+        }
+        private void Sort_Click(object sender, RoutedEventArgs e)
+        {
+            RadioButton RB = (RadioButton)sender;
+            switch (RB.Uid)
+            {
+                case "name":
+                    l1 = l1.OrderBy(x => x.name).ToList();
+                    break;
+                case "DR":
+                    l1 = l1.OrderBy(x => x.dr).ToList();
+                    break;
+            }
+            if (RBReverse.IsChecked == true) l1.Reverse();
+            lbUsersList.ItemsSource = l1;
         }
     }
 }
