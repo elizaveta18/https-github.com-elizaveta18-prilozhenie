@@ -87,6 +87,7 @@
     <Compile Include="auth.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Userss.cs" />
     <Compile Include="genders.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

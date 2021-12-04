@@ -7,12 +7,25 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1000"
       Title="List">
-
     <Page.Resources>
+        <Style TargetType="StackPanel" x:Key="SPstyle">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TooOld}" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="White" Offset="0.852"/>
+                                <GradientStop Color="#FFFD3CC0"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <DataTemplate x:Key="DT1">
             <!--Шаблон для вывода информации о пользователе-->
-            <GroupBox Header="Информация о пользователе" Uid="{Binding Path=id}" HorizontalContentAlignment="Stretch">
-                <StackPanel>
+            <GroupBox  Header="Информация о пользователе" Uid="{Binding Path=id}" HorizontalContentAlignment="Stretch" >
+                <StackPanel Style="{StaticResource SPstyle}">
                     <GroupBox Header="имя">
                         <TextBlock Text="{Binding name}"/>
                     </GroupBox>
