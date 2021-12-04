@@ -29,9 +29,8 @@
                         <ListBox Name="lbTraits" Loaded="lbTraits_Loaded" Uid="{Binding id}"/>
                         <!--loaded - событие, которое происходит при создании элемента списка из шаблона-->
                     </GroupBox>
-                    <Image x:Name="UserImage" Loaded="UserImage_Loaded" Uid="{Binding id}"/>
+                    <Image x:Name="UserImage" Loaded="UserImage_Loaded" Uid="{Binding id}" MouseDown="UserImage_MouseDown"/>
                     <Button x:Name="BtmAddImage" Content="Загрузить изображение пользователя" Click="BtmAddImage_Click" Uid="{Binding id}"/>
-                    <Button x:Name="PrAddImage" Content="Просмотр изображений пользователя" Click="PrAddImage_Click" Uid="{Binding id}"/>
                 </StackPanel>
             </GroupBox>
         </DataTemplate>

@@ -174,7 +174,7 @@ namespace Anketa_01._01__1_
             System.Windows.Controls.Image IMG = sender as System.Windows.Controls.Image;
             int ind = Convert.ToInt32(IMG.Uid);
             users U = DB.Base.users.FirstOrDefault(x => x.id == ind);//запись о текущем пользователе
-            usersimage UI = DB.Base.usersimage.FirstOrDefault(x => x.id_user == ind);//получаем запись о картинке для текущего пользователя
+            usersimage UI = DB.Base.usersimage.FirstOrDefault(x => x.id_user == ind && x.avatar == true);//получаем запись о картинке для текущего пользователя
             BitmapImage BI = new BitmapImage();
             if (UI != null)//если для текущего пользователя существует запись о его катринке
             {
@@ -243,10 +243,14 @@ namespace Anketa_01._01__1_
             }
             if (RBReverse.IsChecked == true) l1.Reverse();
             lbUsersList.ItemsSource = l1;
+            txtPageCount_TextChanged(null, null);//вызываем событие с текстбокса изменения количества записей на странице (для отрисовки)
         }
-        private void PrAddImage_Click(object sender, RoutedEventArgs e)
+        private void UserImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+             System.Windows.Controls.Image im = (System.Windows.Controls.Image)sender;
+             int index = Convert.ToInt32(im.Uid);
+             Window1 G = new Window1(index);
+             G.Show();
         }
     }
 }
