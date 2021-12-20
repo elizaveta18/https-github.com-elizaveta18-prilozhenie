@@ -5,17 +5,24 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Anketa_01._01__1_.pages"
       mc:Ignorable="d" 
+      
       d:DesignHeight="450" d:DesignWidth="800"
       Title="login">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <GroupBox Header="Введите регистрационные данные" Height="120" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <GroupBox Header="Введите регистрационные данные" Height="150" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <StackPanel>
                     <GroupBox Header="Введите логин">
                         <TextBox x:Name="txtLogin" />
                     </GroupBox>
                     <GroupBox Header="Введите пароль">
                         <PasswordBox x:Name="txtPassword"/>
+                    </GroupBox>
+                    <GroupBox Header="Введите код">
+                        <StackPanel Orientation="Horizontal">
+                        <TextBox x:Name="txtKod" Width="100"/>
+                        <Image x:Name="imgRefresh" IsEnabled="False" Source="/Image/refresh.png" Width="20" Height="20" MouseDown="Image_MouseDown" ></Image>
+                        </StackPanel>
                     </GroupBox>
                 </StackPanel>
             </GroupBox>

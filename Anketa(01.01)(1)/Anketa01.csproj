@@ -87,6 +87,10 @@
     <Compile Include="auth.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Cl\Class1.cs" />
+    <Compile Include="pages\Graphic.xaml.cs">
+      <DependentUpon>Graphic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Userss.cs" />
     <Compile Include="genders.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -143,6 +147,10 @@
     <Compile Include="pages\Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
+    <Page Include="pages\Graphic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\List.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -254,6 +262,7 @@
     <Resource Include="Image\deva.jpg" />
     <Resource Include="Image\maik.jpg" />
     <Resource Include="Image\cheba.jpg" />
+    <Resource Include="Image\refresh.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

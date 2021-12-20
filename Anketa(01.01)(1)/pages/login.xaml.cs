@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Anketa_01._01__1_.pages;
 
 namespace Anketa_01._01__1_.pages
@@ -25,6 +26,8 @@ namespace Anketa_01._01__1_.pages
         {
             InitializeComponent();
         }
+        string kode;
+        bool flagKode = false;
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
@@ -33,17 +36,25 @@ namespace Anketa_01._01__1_.pages
                 auth currentUser = DB.Base.auth.FirstOrDefault(x => x.login == txtLogin.Text && x.password == txtPassword.Password);
                 if (currentUser != null)
                 {//сюда напишем алгоритм перехода на страницу в зависимости от роли
-                    switch (currentUser.role)
+                    if (flagKode == false)
                     {
-                        case 1:
-                            MessageBox.Show("Вы вошли как администратор");
-                            User.frmMain.Navigate(new List());
-                            break;
-                        case 2:
-                        default:
-                            MessageBox.Show("Вы вошли как обычный пользователь");
-                            User.frmMain.Navigate(new Page4(currentUser));
-                            break;
+                        generateKey();
+                        flagKode = true;
+                    }
+                    else if (kode == txtKod.Text)
+                    {
+                        switch (currentUser.role)
+                        {
+                            case 1:
+                                MessageBox.Show("Вы вошли как администратор");
+                                User.frmMain.Navigate(new List());
+                                break;
+                            case 2:
+                            default:
+                                MessageBox.Show("Вы вошли как обычный пользователь");
+                                User.frmMain.Navigate(new Page4(currentUser));
+                                break;
+                        }
                     }
                 }
                 else
@@ -60,6 +71,35 @@ namespace Anketa_01._01__1_.pages
         private void btnReg_Click(object sender, RoutedEventArgs e)
         {
             User.frmMain.Navigate(new Page1());
+        }
+        Random random = new Random();
+        private void generateKey()
+        {
+            imgRefresh.IsEnabled = false;
+            kode = "";
+
+            for (int i = 0; i < 8; i++)
+            {
+                kode += ((char)random.Next(33, 122)).ToString();
+            }
+            txtKod.Text = kode;
+            MessageBox.Show(kode, "введите код в соответствующее поле на форме.", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK, MessageBoxOptions.RightAlign);
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Start();
+        }
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            imgRefresh.IsEnabled = true;
+            kode = ((char)random.Next(33, 122)).ToString();
+            // MessageBox.Show("время вышло");
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            generateKey();
+            flagKode = true;
         }
     }
 }
