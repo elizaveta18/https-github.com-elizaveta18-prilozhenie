@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -25,6 +26,14 @@ namespace Anketa_01._01__1_.pages
         public Page2()
         {
             InitializeComponent();
+            DoubleAnimation DA = new DoubleAnimation();
+            DA.Duration = new TimeSpan(0, 0, 1);
+            DA.From = 100;
+            DA.To = 500;
+            DA.Duration = TimeSpan.FromSeconds(2);
+            DA.AutoReverse = true;
+            DA.RepeatBehavior = RepeatBehavior.Forever;
+            btnReg.BeginAnimation(WidthProperty, DA);
         }
         string kode;
         bool flagKode = false;
@@ -71,6 +80,7 @@ namespace Anketa_01._01__1_.pages
         private void btnReg_Click(object sender, RoutedEventArgs e)
         {
             User.frmMain.Navigate(new Page1());
+           
         }
         Random random = new Random();
         private void generateKey()
@@ -101,5 +111,6 @@ namespace Anketa_01._01__1_.pages
             generateKey();
             flagKode = true;
         }
+   
     }
 }
