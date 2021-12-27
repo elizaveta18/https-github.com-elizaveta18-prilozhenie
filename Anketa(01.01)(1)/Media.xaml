@@ -10,19 +10,19 @@
 
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal" Margin="15" Width="300">
+            <StackPanel Orientation="Horizontal" Margin="15" Width="400">
                 <Button x:Name="btnPr" Content="Воспроизвести" Height="20" Width="100" Click="btnPr_Click" Foreground="#FFF729B6" Background="{x:Null}"></Button>
                 <Button x:Name="btnPa" Content="Пауза" Height="20" Width="100" Click="btnPa_Click" Foreground="#FFF729B6" Background="{x:Null}"></Button>
                 <Button x:Name="btnStop" Content="Стоп" Height="20" Width="100" Click="btnStop_Click" Foreground="#FFF729B6" Background="{x:Null}"></Button>
+                <Button x:Name="btnNaz" Content="Назад" Height="20" Width="100" Click="btnNaz_Click" Foreground="#FFF729B6" Background="{x:Null}"></Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Slider x:Name="Sl"  Maximum="1"  Width="300" Minimum="0" SmallChange="0.01" LargeChange="0.1" Value="0" ValueChanged="Sl_ValueChanged"></Slider>
-                <Slider x:Name="sldVolume" Width="100" SmallChange="0.01" LargeChange="0.1" Maximum="1" Minimum="0"></Slider>
+                <Slider x:Name="sldVolume" Width="100" SmallChange="0.01" LargeChange="0.1" Maximum="1" Minimum="0" ValueChanged="sldVolume_ValueChanged"></Slider>
             </StackPanel>
             <StackPanel>
                 <MediaElement x:Name="med" Source="Media\Cot.mp4" Height="350" Width="400" LoadedBehavior="Manual" Volume="{Binding ElementName=Sl, Path=Value}"/>
-                </StackPanel>
-            
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Anketa_01._01__1_.pages;
 
 namespace Anketa_01._01__1_
 {
@@ -56,7 +57,16 @@ namespace Anketa_01._01__1_
                 //med.Position = TimeSpan.FromMilliseconds(d * Sl.Value);//установка конкретного значения
                 TimeSpan newPosition = TimeSpan.FromSeconds(med.NaturalDuration.TimeSpan.TotalSeconds * e.NewValue);
                 med.Position = newPosition;
+        }
 
+        private void sldVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+        private void btnNaz_Click(object sender, RoutedEventArgs e)
+        {
+            User.frmMain.Navigate(new Page2());
         }
     }
 }
