@@ -9,6 +9,6 @@
       Title="Graphic">
 
     <Grid Name="gridDiagram" SizeChanged="gridDiagram_SizeChanged">
- 
+
     </Grid>
 </Page>

@@ -46,9 +46,8 @@ namespace Anketa_01._01__1_.pages
                 L.StrokeThickness = maxX / 100;
                 gridDiagram.Children.Add(L);
                 TextBlock TB = new TextBlock();
-                TB.Width = maxX / 20 + stepX * i;
-                TB.Height = maxY - maxY / 20 - stepY * i;
-                TB.Text = (maxY - maxY / 20 - stepY * i).ToString();
+                TB.Margin = new Thickness(maxX / 20 + stepX * i, maxY - maxY / 20 - stepY * i, 0, 0);
+                TB.Text = (maxY / 20 + stepY * i).ToString("F2");
                 gridDiagram.Children.Add(TB);
                 //gridDiagram.Children.Add(polygon(maxX / 20 * i, (maxY - maxY / 20) * i, maxX / 20 * i + maxX / 40, maxY / 20));
             }
@@ -75,5 +74,6 @@ namespace Anketa_01._01__1_.pages
             P.Stroke = Brushes.Aqua;
             return P;
         }
+
     }
 }

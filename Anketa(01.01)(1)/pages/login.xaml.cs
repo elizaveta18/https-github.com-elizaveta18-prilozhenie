@@ -33,7 +33,7 @@ namespace Anketa_01._01__1_.pages
             DA.Duration = TimeSpan.FromSeconds(2);
             DA.AutoReverse = true;
             DA.RepeatBehavior = RepeatBehavior.Forever;
-            btnReg.BeginAnimation(WidthProperty, DA);
+            btnMir.BeginAnimation(WidthProperty, DA);
         }
         string kode;
         bool flagKode = false;
@@ -80,8 +80,14 @@ namespace Anketa_01._01__1_.pages
         private void btnReg_Click(object sender, RoutedEventArgs e)
         {
             User.frmMain.Navigate(new Page1());
-           
         }
+
+        private void btMir_Click(object sender, RoutedEventArgs e)
+        {
+            User.frmMain.Navigate(new Media());
+
+        }
+
         Random random = new Random();
         private void generateKey()
         {
@@ -111,6 +117,10 @@ namespace Anketa_01._01__1_.pages
             generateKey();
             flagKode = true;
         }
-   
+
+        private void btnGraph_Click(object sender, RoutedEventArgs e)
+        {
+            User.frmMain.Navigate(new Graphic());
+        }
     }
 }

@@ -26,8 +26,10 @@
                     </GroupBox>
                 </StackPanel>
             </GroupBox>
-                <Button x:Name="btnLogin" Content="Авторизоваться" Height="25" Click="btnLogin_Click" IsDefault="True" Background="{x:Null}" Foreground="#FFF729B6" />
-                <Button x:Name="btnReg" Content="Зарегистрироваться" Height="25" Click="btnReg_Click" Foreground="#FFF729B6" Background="{x:Null}" />
+            <Button x:Name="btnLogin" Content="Авторизоваться" Width="250" Height="25" Click="btnLogin_Click" IsDefault="True" Background="{x:Null}" Foreground="#FFF729B6" />
+            <Button x:Name="btnReg" Content="Зарегистрироваться" Width="250" Height="25" Click="btnReg_Click" Foreground="#FFF729B6" Background="{x:Null}" />
+            <Button x:Name="btnGraph" Content="График" Width="250" Height="25" Click="btnGraph_Click" IsDefault="True" Background="{x:Null}" Foreground="#FFF729B6" />
+            <Button x:Name="btnMir" Content="Мир грёз" Height="25" Click="btMir_Click" Foreground="#FFF729B6" Background="{x:Null}" />
         </StackPanel>
     </Grid>
 </Page>
