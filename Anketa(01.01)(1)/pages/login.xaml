@@ -30,6 +30,7 @@
             <Button x:Name="btnReg" Content="Зарегистрироваться" Width="250" Height="25" Click="btnReg_Click" Foreground="#FFF729B6" Background="{x:Null}" />
             <Button x:Name="btnGraph" Content="График" Width="250" Height="25" Click="btnGraph_Click" IsDefault="True" Background="{x:Null}" Foreground="#FFF729B6" />
             <Button x:Name="btnMir" Content="Мир грёз" Height="25" Click="btMir_Click" Foreground="#FFF729B6" Background="{x:Null}" />
+            <Button x:Name="btnDataGridd" Content="Список клиентов" Height="25" Foreground="#FFF729B6" Background="{x:Null}" Click="btnDataGridd_Click" />
         </StackPanel>
     </Grid>
 </Page>

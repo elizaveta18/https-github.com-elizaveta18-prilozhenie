@@ -56,7 +56,7 @@ namespace Anketa_01._01__1_.pages
                         {
                             case 1:
                                 MessageBox.Show("Вы вошли как администратор");
-                                User.frmMain.Navigate(new List());
+                                User.frmMain.Navigate(new Page3());
                                 break;
                             case 2:
                             default:
@@ -121,6 +121,11 @@ namespace Anketa_01._01__1_.pages
         private void btnGraph_Click(object sender, RoutedEventArgs e)
         {
             User.frmMain.Navigate(new Graphic());
+        }
+
+        private void btnDataGridd_Click(object sender, RoutedEventArgs e)
+        {
+            User.frmMain.Navigate(new Page3());
         }
     }
 }
